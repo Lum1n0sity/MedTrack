@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  get "posts/index"
-  get "posts/show"
-  get "posts/new"
-  get "posts/create"
-  get "posts/edit"
-  get "posts/update"
-  get "posts/destroy"
+  get "dashboard/index"
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/destroy"
+  get "users/new"
+  get "users/create"
   get "home/index"
   get "up" => "rails/health#show", as: :rails_health_check
 
@@ -14,6 +13,16 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  root 'home#index'
+  root "home#index"
   resources :posts
+
+  resources :users, only: [ :new, :create ]
+  resources :sessions, only: [ :new, :create, :destroy ]
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+  get "signup", to: "users#new"
+  delete "logout", to: "sessions#destroy", as: :logout
+
+  # dashboard
+  get 'dashboard', to: 'dashboard#index'
 end

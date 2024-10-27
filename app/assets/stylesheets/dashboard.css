@@ -1,0 +1,85 @@
+.root-link {
+    text-decoration: none;
+}
+
+.logo_img {
+    width: 60%;
+}
+
+.med-history-btn {
+    margin-left: auto;
+    margin-right: 1%;
+    font-weight: 500;
+    font-size: 1.2rem;
+    background: #4bb3b1;
+}
+
+.user-profile {
+    width: 5%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-picture {
+    width: 80%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 10.5%;
+    right: 1%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 10;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-profile:hover .dropdown-menu,
+.dropdown-menu:hover {
+    display: flex;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 6.5px 1px rgba(0, 0, 0, 0.2);
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+.bottom-option {
+    margin-top: 10%;
+}
+
+.button_to {
+    width: 100%;
+}
+
+.sub-header {
+    background: #fff;
+    box-shadow: 0 0 78.5px 2px rgba(0, 0, 0, 0.2);
+}
+
+.sub-header-item {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-left: 1%;
+}

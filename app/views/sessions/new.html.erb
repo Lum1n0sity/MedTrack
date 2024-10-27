@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag 'login', media: 'all' %>
+<div class="body">
+    <div class="header login-header">
+        <div class="logo">
+            <%= image_tag 'logo.svg', class: 'logo_img'%>
+            <h3 class="logo_text">MedTrack</h3>
+        </div>
+        <h1>Login</h1>
+    </div>
+    <%= form_with model: @user, url: login_path, html: { class: "form-class" } do |form| %>
+        <div class="form-group top-group">
+            <%= form.label :email, class: "label" %>
+            <%= form.text_field :email, class: "input" %>
+        </div>
+        <div class="form-group">
+            <%= form.label :password, class: "label" %>
+            <%= form.password_field :password, class: "input" %>
+        </div>
+        <div class="form-group remember-group">
+            <%= form.check_box :remember_me, class: "checkbox-class" %>
+            <%= form.label :remember_me, "Remember Me", class: "label checkbox-label" %>
+        </div>
+        <div class="form-group submit-group">
+            <%= form.submit "Login", class: "button submit-btn" %>
+        </div>
+    <% end %>
+</div>

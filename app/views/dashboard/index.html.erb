@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag 'dashboard', media: 'all'%>
+<head>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+</head>
+<div class="header">
+    <%= link_to dashboard_path, class: "root-link" do %>
+        <div class="logo">
+            <%= image_tag 'logo.svg', class: 'logo_img'%>
+            <h3 class="logo_text">MedTrack</h3>
+        </div>
+    <% end %>
+    <button class="button med-history-btn">Medical History</button>
+    <div class="user-profile">
+        <%= image_tag 'user.svg', class: 'profile-picture'%>
+        <div class="dropdown-menu">
+            <button class="dropdown-item">Settings</button>
+            <%= button_to "Logout", logout_path, method: :delete, class: "dropdown-item bottom-option", form: { data: { turbo: false } } %>
+        </div>
+    </div>
+</div>
+<div class="header sub-header">
+    <h2 class="sub-header-item">Welcome, <%= current_user.name %></h2>
+</div>

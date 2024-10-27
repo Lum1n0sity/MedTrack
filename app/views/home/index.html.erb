@@ -1,3 +1,26 @@
-<%= stylesheet_link_tag 'index', media: 'all'%>
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<%= stylesheet_link_tag 'index', media: 'all' %>
+<div class="header">
+  <div class="logo">
+    <%= image_tag 'logo.svg', class: 'logo_img'%>
+    <h3 class="logo_text">MedTrack</h3>
+  </div>
+  <div class="header-buttons">
+    <%= link_to "Signup", signup_path, class: "button signUp"%>
+    <%= link_to "Login", login_path, class: "button login"%>
+  </div>
+</div>
+<div class="body">
+  <h2 class="welcome">Welcome to MedTrack</h2>
+  <div class="desc-wrapper">
+    <%= image_tag 'medication.png', class: 'medicationImg'%>
+    <div class="desc-text-wrapper">
+      <h3>Stay on top of your health!</h3>
+      <p>MedTrack is your go-to solution for managing medications, tracking dosages, and setting reminders with ease. Whether managing chronic conditions or occasional prescriptions, MedTrack helps you stay organized and informed.</p>
+    </div>
+  </div>
+  <div class="join-wrapper">
+    <h3>Join MedTrack Today!</h3>
+    <p>Sign up now to take control of your medication management and improve your health journey.</p>
+    <%= link_to "Get Started", signup_path, class: "button getStarted"%>
+  </div>
+</div>
