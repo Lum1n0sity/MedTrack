@@ -1,8 +1,10 @@
 <%= stylesheet_link_tag 'dashboard', media: 'all'%>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <head>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 </head>
+<div class="blocker" id="blocker"></div>
 <div class="header">
     <%= link_to dashboard_path, class: "root-link" do %>
         <div class="logo">
@@ -20,5 +22,89 @@
     </div>
 </div>
 <div class="header sub-header">
-    <h2 class="sub-header-item">Welcome, <%= current_user.name %></h2>
+    <h2 class="sub-header-item">Welcome, <%= current_user.name %>!</h2>
+    <h2 class="sub-header-item">Number of medication tracked: N/A</h2>
+    <div class="sub-header-item-wrapper">
+        <h2 class="sub-header-item">Upcoming reminder:</h2>
+        <div class="reminder-short">
+            <p>Medicine 1</p>
+            <p>09:30 AM</p>
+        </div>
+    </div>
 </div>
+<div class="section-wrapper">
+    <div class="section reminders-section">
+        <h2>Active Reminders</h2>
+        <div class="item-container">
+            <% @reminders.each do |reminder| %>
+                <div class="reminder" id="reminder_<%= reminder.medication%>">
+                    <h3 class="reminder-med"><%= reminder.medication %></h3>        
+                    <h3 class="reminder-time"><%= reminder.time %></h3>
+                    <h3 class="reminder-amount"><%= reminder.amount %></h3>
+                </div>
+            <% end %>
+        </div>
+        <div class="action-group">
+            <button class="add-item button"><span class="material-symbols-rounded">add</span> <p>Add Reminder</p></button>
+            <button class="remove-item button"><span class="material-symbols-rounded">delete</span> <p>Remove Reminder</p></button>
+        </div>
+    </div>
+    <div class="section medication-section">
+        <h2>Current Medication</h2>
+        <div class="item-container">
+            <% @medications.each do |medication| %>
+                <div class="medication" id="medication_<%= medication.name%>">
+                    <h3 class="reminder-med"><%= medication.name %></h3>        
+                    <h3 class="reminder-time"><%= medication.duration %></h3>
+                    <h3 class="reminder-amount"><%= medication.amount %></h3>
+                </div>
+            <% end %>
+        </div>
+        <div class="action-group">
+            <button class="add-item add-med button" onclick="togglePopup('add-med-win')"><span class="material-symbols-rounded">add</span> <p>Add Medication</p></button>
+            <button class="remove-item remove-med button"><span class="material-symbols-rounded">delete</span> <p>Remove Medication</p></button>
+        </div>
+    </div>
+</div>
+<div class="popup add-med-win" id="add-med-win">
+    <div class="popup-header">
+        <h2>Add Medication</h2>
+        <button class="close-btn" onclick="togglePopup('add-med-win')"><span class="material-symbols-rounded">close</span></button>
+    </div>
+    <%= form_with model: Medication.new, url: dashboard_path, html: { class: "med-form" }, local: true do |form| %>
+        <div class="form-group">
+            <%= form.label :medication_name, class: "label" %>
+            <%= form.text_field :name, class: "input" %>
+        </div>
+        <div class="form-group">
+            <%= form.label :medication_intake_duration, class: "label" %>
+            <%= form.text_field :duration, class: "input" %>
+        </div>
+        <div class="form-group sub-master">
+            <div class="sub-group sub1">
+                <%= form.label :amount_in_mg, class: "label label-sub1" %>
+                <%= form.text_field :amount, class: "input input-sub1" %>
+            </div>
+            <div class="sub-group sub2">
+                <%= form.label :reason_for_the_prescription, class: "label label-sub2" %>
+                <%= form.text_field :reason, class: "input input-sub2" %>
+            </div>
+        </div>
+        <div class="form-group">
+            <%= form.label :prescribed_by, class: "label" %>
+            <%= form.text_field :doctor, class: "input" %>
+        </div>
+        <div class="form-group submit-group">
+            <%= form.submit "Add Medication", class: "button submit-btn" %>
+        </div>
+    <% end %>
+</div>
+
+<script>
+    function togglePopup(id) {
+        const popup = document.getElementById(id);
+        const blocker = document.getElementById("blocker");
+        popup.style.display = popup.style.display == "none" ? "flex" : "none";
+        blocker.style.display = blocker.style.display == "none" ? "block" : "none";
+    }
+</script>

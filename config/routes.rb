@@ -25,4 +25,5 @@ Rails.application.routes.draw do
 
   # dashboard
   get 'dashboard', to: 'dashboard#index'
+  post 'dashboard/create_medication', to: 'dashboard#create_medication'
 end
